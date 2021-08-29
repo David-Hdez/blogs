@@ -28,6 +28,6 @@
             <small *ngIf="!password.valid && password.touched" class="invalid-feedback d-block">Contraseña
                 requerida</small>
         </div>
-        <button type="submit" class="btn btn-primary">Registrarse</button>
+        <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Registrarse</button>
     </form>
 </div>

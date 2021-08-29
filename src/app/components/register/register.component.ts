@@ -22,6 +22,7 @@ export class RegisterComponent implements OnInit {
   register(form: any) {
     console.debug(form)
     console.debug(this.user)
+    form.reset()
   }
 
 }
