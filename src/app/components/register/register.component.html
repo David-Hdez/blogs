@@ -1,6 +1,12 @@
 <div class="col-12 mt-3">
     <h1>{{page_title}}</h1>
     <p>¡Registrate para crear nuevos posts!</p>
+    <div class="alert alert-success" *ngIf="status=='success'">
+        El registro se ha completado correctamente, <a [routerLink]="['/login']">inicia sesión aquí</a>
+    </div>
+    <div class="alert alert-danger" *ngIf="status=='error'">
+        El registro no se pudo completar, por favor intentalo más tarde.
+    </div>
     <form class="col-md-6" #registerForm="ngForm" (ngSubmit)="register(registerForm)">
         <div class="form-group">
             <label for="name">Nombre</label>
