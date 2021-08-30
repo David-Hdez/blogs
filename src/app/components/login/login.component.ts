@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
 
@@ -17,7 +18,9 @@ export class LoginComponent implements OnInit {
   public identity: any
 
   constructor(
-    private _userService: UserService
+    private _userService: UserService,
+    private _router: Router,
+    private _route: ActivatedRoute
   ) {
     this.page_title = 'Identifícate'
     this.user = new User(1, '', '', 'ROLE_USER', '', '', '', '')
@@ -25,6 +28,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.logout() // Get param sure in the route
   }
 
   login(form: any) {
@@ -40,6 +44,8 @@ export class LoginComponent implements OnInit {
 
               localStorage.setItem('token', this.jwt)
               localStorage.setItem('identity', JSON.stringify(this.identity))
+
+              this._router.navigate(['inicio'])
             },
             error => {
               this.status = 'error'
@@ -55,6 +61,22 @@ export class LoginComponent implements OnInit {
         console.error('Token', <any>error)
       }
     )
+  }
+
+  logout() {
+    this._route.params.subscribe(params => {
+      let close_session = +params['sure']
+
+      if (close_session == 1) {
+        localStorage.removeItem('identity')
+        localStorage.removeItem('token')
+
+        this.identity = null
+        this.jwt = null
+
+        this._router.navigate(['inicio'])
+      }
+    })
   }
 
 }
