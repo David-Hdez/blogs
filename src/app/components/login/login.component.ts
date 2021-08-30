@@ -39,8 +39,9 @@ export class LoginComponent implements OnInit {
           this._userService.signup(this.user, true).subscribe(
             response => {
               this.identity = response
-              console.debug('jwt', this.jwt)
-              console.debug('identity', this.identity)
+
+              localStorage.setItem('token', this.jwt)
+              localStorage.setItem('identity', JSON.stringify(this.identity))
             },
             error => {
               this.status = 'error'
