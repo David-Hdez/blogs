@@ -13,8 +13,8 @@ export class LoginComponent implements OnInit {
   public page_title: string
   public user: User
   public status: string
-  public jwt: string
-  public identity: string
+  public jwt: any
+  public identity: any
 
   constructor(
     private _userService: UserService
@@ -22,8 +22,6 @@ export class LoginComponent implements OnInit {
     this.page_title = 'Identifícate'
     this.user = new User(1, '', '', 'ROLE_USER', '', '', '', '')
     this.status = ''
-    this.jwt = ''
-    this.identity = ''
   }
 
   ngOnInit(): void {
