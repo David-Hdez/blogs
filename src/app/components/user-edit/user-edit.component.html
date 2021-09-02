@@ -2,6 +2,12 @@
     <h1>{{page_title}}</h1>
     <p>Modifica tu datos</p>
     <hr>
+    <div class="alert alert-success" *ngIf="status=='success'">
+        Datos guardados correctamente.
+    </div>
+    <div class="alert alert-danger" *ngIf="status=='error'">
+        El guardado no se pudo completar, por favor intentalo más tarde.
+    </div>
     <form class="col-md-6" #editForm="ngForm" (ngSubmit)="update(editForm)">
         <div class="form-group">
             <label for="name">Nombre</label>
@@ -24,7 +30,7 @@
         </div>
         <div class="form-group">
             <label for="description">Descripción</label>
-            <textarea class="form-control" name="description" id="description" rows="3"
+            <textarea [froalaEditor]="froala_options" class="form-control" name="description" id="description" rows="3"
                 [(ngModel)]="user.description"></textarea>
         </div>
         <div class="form-group">
