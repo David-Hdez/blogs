@@ -39,8 +39,7 @@ export class UserEditComponent implements OnInit {
   update(form: any) {
     this._userService.update(this.jwt, this.user).subscribe(
       response => {
-        console.debug(response)
-        if (response) {
+        if (response && response.status) {
           this.status = 'success'
 
           // Updating user in the session
