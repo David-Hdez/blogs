@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
+import { global } from '../../services/global';
 
 @Component({
   selector: 'app-user-edit',
@@ -14,12 +15,29 @@ export class UserEditComponent implements OnInit {
   public status: string
   public jwt: any
   public identity: any
-  public froala_options: Object = {
+  public options: Object = {
     charCounterCount: true,
     toolbarButtons: ['bold', 'italic', 'underline', 'paragraphFormat', 'alert'],
     toolbarButtonsXS: ['bold', 'italic', 'underline', 'paragraphFormat', 'alert'],
     toolbarButtonsSM: ['bold', 'italic', 'underline', 'paragraphFormat', 'alert'],
     toolbarButtonsMD: ['bold', 'italic', 'underline', 'paragraphFormat', 'alert'],
+  };
+  public afuConfig = {
+    multiple: false,
+    formatsAllowed: ".jpg,.png,.jpeg",
+    maxSize: "20",
+    uploadAPI: {
+      url: global.urlApi + "user/avatar",
+      method: "POST",
+      headers: {
+        "Authorization": this._userService.getToken()
+      },
+    },
+    theme: "attachPin",
+    hideProgressBar: false,
+    hideResetBtn: true,
+    hideSelectBtn: false,
+    attachPinText: 'Selecciona tu avatar'
   };
 
   constructor(
@@ -43,6 +61,9 @@ export class UserEditComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Update user info
+   */
   update(form: any) {
     this._userService.update(this.jwt, this.user).subscribe(
       response => {
@@ -66,6 +87,15 @@ export class UserEditComponent implements OnInit {
         console.error(<any>error)
       }
     )
+  }
+
+  /**
+   * Avatar for user            
+   */
+  avatarUpload(avatar: any) {
+    console.debug(avatar)
+    let image = JSON.stringify(avatar.response)
+    this.user.image = image
   }
 
 }

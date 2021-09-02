@@ -30,12 +30,13 @@
         </div>
         <div class="form-group">
             <label for="description">Descripción</label>
-            <textarea [froalaEditor]="froala_options" class="form-control" name="description" id="description" rows="3"
+            <textarea [froalaEditor]="options" class="form-control" name="description" id="description" rows="3"
                 [(ngModel)]="user.description"></textarea>
         </div>
         <div class="form-group">
             <label for="avatar">Avatar</label>
-            <input type="file" class="form-control-file" id="avatar" name="avatar">
+            <angular-file-uploader [config]="afuConfig" (ApiResponse)="avatarUpload($event)">
+            </angular-file-uploader>
         </div>
         <button type="submit" class="btn btn-primary mt-5" [disabled]="editForm.invalid">Guardar</button>
     </form>
