@@ -22,19 +22,35 @@ export class UserEditComponent implements OnInit {
     this.status = ''
     this.identity = _userService.getIdentity()
     this.jwt = _userService.getToken()
-    this.user = this.identity
+    this.user = new User(
+      this.identity.sub,
+      this.identity.name,
+      this.identity.surname,
+      this.identity.role,
+      this.identity.email,
+      '',
+      this.identity.description,
+      this.identity.image)
   }
 
   ngOnInit(): void {
   }
 
   update(form: any) {
-    this._userService.register(this.user).subscribe(
+    this._userService.update(this.jwt, this.user).subscribe(
       response => {
-        if (response.status == 'success') {
-          this.status = response.status
+        console.debug(response)
+        if (response) {
+          this.status = 'success'
 
-          form.reset()
+          // Updating user in the session
+          this.user.name = response.updates.name
+          this.user.surname = response.updates.surname
+          this.user.email = response.updates.email
+          this.user.description = response.updates.description
+
+          this.identity = this.user
+          localStorage.setItem('identity', JSON.stringify(this.identity))
         } else {
           this.status = 'error'
         }

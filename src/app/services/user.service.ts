@@ -17,9 +17,9 @@ export class UserService {
   }
 
   /**
-   * Registro de usuario   
-   * @param user Datos del usuario
-   * @returns {Observable} Respuesta del API
+   * User register
+   * @param user User data
+   * @returns {Observable} API response
    */
   register(user: User): Observable<any> {
     let user_data = JSON.stringify(user)
@@ -31,9 +31,9 @@ export class UserService {
   }
 
   /**
-   * Login de usuario   
-   * @param user Datos del usuario
-   * @returns {Observable} Respuesta del API
+   * User login
+   * @param user User data
+   * @returns {Observable} API response
    */
   signup(user: any, getToken: any = null): Observable<any> {
     if (getToken != null) {
@@ -47,6 +47,9 @@ export class UserService {
     return this._http.post(this.urlApi + 'user/login', body_form_data, { headers: headers })
   }
 
+  /**
+   * Get user info   
+   */
   getIdentity() {
     let identity = JSON.parse(localStorage.getItem('identity') || '{}')
 
@@ -59,6 +62,9 @@ export class UserService {
     return this.identity
   }
 
+  /**
+   * Get user JWT
+   */
   getToken() {
     let token = localStorage.getItem('token')
 
@@ -69,5 +75,21 @@ export class UserService {
     }
 
     return this.token
+  }
+
+  /**
+   * Update user info
+   * 
+   * @param token JWT
+   * @param user User object
+   * @returns {Observable} API response
+   */
+  update(token: any, user: any): Observable<any> {
+    let user_data = JSON.stringify(user)
+    let body_form_data = 'user=' + user_data
+    let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+      .set('Authorization', token)
+
+    return this._http.put(this.urlApi + 'user', body_form_data, { headers: headers })
   }
 }
