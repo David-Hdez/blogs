@@ -12,13 +12,17 @@ export class UserEditComponent implements OnInit {
   public page_title: string
   public user: User
   public status: string
+  public jwt: any
+  public identity: any
 
   constructor(
     private _userService: UserService
   ) {
     this.page_title = 'Ajustes de usuario'
-    this.user = new User(1, '', '', 'ROLE_USER', '', '', '', '')
     this.status = ''
+    this.identity = _userService.getIdentity()
+    this.jwt = _userService.getToken()
+    this.user = this.identity
   }
 
   ngOnInit(): void {
