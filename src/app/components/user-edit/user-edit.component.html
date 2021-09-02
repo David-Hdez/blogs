@@ -1,1 +1,36 @@
-<p>user-edit works!</p>
+<div class="col-12 mt-3">
+    <h1>{{page_title}}</h1>
+    <p>Modifica tu datos</p>
+    <hr>
+    <form class="col-md-6" #editForm="ngForm" (ngSubmit)="update(editForm)">
+        <div class="form-group">
+            <label for="name">Nombre</label>
+            <input type="text" class="form-control" id="name" name="name" #name="ngModel" [(ngModel)]="user.name"
+                required pattern="[a-zA-Z]+">
+            <small *ngIf="!name.valid && name.touched" class="invalid-feedback d-block">Nombre no es válido</small>
+        </div>
+        <div class="form-group">
+            <label for="surname">Apellidos</label>
+            <input type="text" class="form-control" id="surname" name="surname" #surname="ngModel"
+                [(ngModel)]="user.surname" required pattern="[a-zA-Z]+">
+            <small *ngIf="!surname.valid && surname.touched" class="invalid-feedback d-block">Apellido no es
+                válido</small>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" #email="ngModel" [(ngModel)]="user.email"
+                required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+            <small *ngIf="!email.valid && email.touched" class="invalid-feedback d-block">Email no es válido</small>
+        </div>
+        <div class="form-group">
+            <label for="description">Descripción</label>
+            <textarea class="form-control" name="description" id="description" rows="3"
+                [(ngModel)]="user.description"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="avatar">Avatar</label>
+            <input type="file" class="form-control-file" id="avatar" name="avatar">
+        </div>
+        <button type="submit" class="btn btn-primary mt-5" [disabled]="editForm.invalid">Guardar</button>
+    </form>
+</div>
