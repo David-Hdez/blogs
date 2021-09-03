@@ -14,6 +14,18 @@ export class CategoryService {
         this.urlApi = global.urlApi
     }
 
+    /**
+     * Show Categories
+     */
+    index(): Observable<any> {
+        let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+
+        return this._http.get(this.urlApi + 'category', { headers: headers })
+    }
+
+    /**
+     * New Category
+     */
     store(token: string, category: any): Observable<any> {
         let category_data = JSON.stringify(category)
         let body_form_data = 'category=' + category_data
