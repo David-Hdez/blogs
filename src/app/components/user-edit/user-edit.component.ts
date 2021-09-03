@@ -15,6 +15,7 @@ export class UserEditComponent implements OnInit {
   public status: string
   public jwt: any
   public identity: any
+  public urlApi: string
   public options: Object = {
     charCounterCount: true,
     toolbarButtons: ['bold', 'italic', 'underline', 'paragraphFormat', 'alert'],
@@ -56,6 +57,7 @@ export class UserEditComponent implements OnInit {
       '',
       this.identity.description,
       this.identity.image)
+    this.urlApi = global.urlApi
   }
 
   ngOnInit(): void {
@@ -75,6 +77,7 @@ export class UserEditComponent implements OnInit {
           this.user.surname = response.updates.surname
           this.user.email = response.updates.email
           this.user.description = response.updates.description
+          this.user.role = response.updates.role
 
           this.identity = this.user
           localStorage.setItem('identity', JSON.stringify(this.identity))
@@ -93,9 +96,12 @@ export class UserEditComponent implements OnInit {
    * Avatar for user            
    */
   avatarUpload(avatar: any) {
-    console.debug(avatar)
-    let image = JSON.stringify(avatar.response)
-    this.user.image = image
+    let image = JSON.parse(avatar.response)
+
+    this.user.image = image.avatar
+    this.identity = this.user
+
+    localStorage.setItem('identity', JSON.stringify(this.identity))
   }
 
 }
