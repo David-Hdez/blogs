@@ -2,6 +2,12 @@
     <h1>{{page_title}}</h1>
     <p>Crea una nueva categoría para el blog</p>
     <hr>
+    <div class="alert alert-success" *ngIf="status=='success'">
+        Datos guardados correctamente.
+    </div>
+    <div class="alert alert-danger" *ngIf="status=='error'">
+        El guardado no se pudo completar, por favor intentalo más tarde.
+    </div>
     <form class="col-md-6" #categoryForm="ngForm" (ngSubmit)="store(categoryForm)">
         <div class="form-group">
             <label for="name">Nombre</label>
