@@ -37,7 +37,7 @@
             <label for="avatar">Avatar</label>
             <div *ngIf="identity && identity.image">
                 <img src="{{ urlApi + 'user/avatar/' +  identity.image}}" alt="Avatar"
-                    class="img-thumbnail mb-4 avatar-user">
+                    class="img-thumbnail mb-4 avatar-user-edit">
             </div>
             <angular-file-uploader [config]="afuConfig" (ApiResponse)="avatarUpload($event)">
             </angular-file-uploader>

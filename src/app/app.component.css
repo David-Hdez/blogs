@@ -1,0 +1,10 @@
+.avatar-user-header{
+    width: 40px;
+    height: 40px;
+    border-radius: 900px;
+    overflow: hidden;    
+}
+
+.avatar-user-header img{    
+    height: 50px;    
+}
