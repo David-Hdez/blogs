@@ -2,4 +2,13 @@
     <h1>{{page_title}}</h1>
     <p>Crea una nueva categoría para el blog</p>
     <hr>
+    <form class="col-md-6" #categoryForm="ngForm" (ngSubmit)="store(categoryForm)">
+        <div class="form-group">
+            <label for="name">Nombre</label>
+            <input type="text" class="form-control" id="name" name="name" #name="ngModel" [(ngModel)]="category.name"
+                required>
+            <small *ngIf="!name.valid && name.touched" class="invalid-feedback d-block">Nombre requerido</small>
+        </div>
+        <button type="submit" class="btn btn-primary mt-5" [disabled]="categoryForm.invalid">Guardar</button>
+    </form>
 </div>

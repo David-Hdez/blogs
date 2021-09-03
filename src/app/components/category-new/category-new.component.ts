@@ -30,4 +30,11 @@ export class CategoryNewComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * New Category
+   */
+  store(form: any) {
+    console.debug(this.category)
+  }
+
 }
