@@ -15,6 +15,16 @@ export class PostService {
     }
 
     /**
+     * Show all posts             
+     */
+    index(): Observable<any> {
+        let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+
+        return this._http.get(this.urlApi + 'post', { headers: headers })
+    }
+
+
+    /**
      * Store a newly created resource in storage.
      * 
      * @param token JWT
