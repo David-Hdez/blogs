@@ -15,6 +15,13 @@ export class PostNewComponent implements OnInit {
   public identity: any
   public jwt: any
   public post: Post
+  public options: Object = {
+    charCounterCount: true,
+    toolbarButtons: ['bold', 'italic', 'underline', 'paragraphFormat', 'alert'],
+    toolbarButtonsXS: ['bold', 'italic', 'underline', 'paragraphFormat', 'alert'],
+    toolbarButtonsSM: ['bold', 'italic', 'underline', 'paragraphFormat', 'alert'],
+    toolbarButtonsMD: ['bold', 'italic', 'underline', 'paragraphFormat', 'alert'],
+  };
 
   constructor(
     private _router: Router,
@@ -29,6 +36,10 @@ export class PostNewComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  store(form: any) {
+    console.debug(this.post)
   }
 
 }
