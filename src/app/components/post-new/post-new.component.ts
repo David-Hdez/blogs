@@ -4,6 +4,7 @@ import { UserService } from '../../services/user.service';
 import { CategoryService } from '../../services//category.service';
 import { Post } from '../../models/post';
 import { Category } from '../../models/category';
+import { global } from '../../services/global';
 
 @Component({
   selector: 'app-post-new',
@@ -23,6 +24,23 @@ export class PostNewComponent implements OnInit {
     toolbarButtonsXS: ['bold', 'italic', 'underline', 'paragraphFormat', 'alert'],
     toolbarButtonsSM: ['bold', 'italic', 'underline', 'paragraphFormat', 'alert'],
     toolbarButtonsMD: ['bold', 'italic', 'underline', 'paragraphFormat', 'alert'],
+  };
+  public afuConfig = {
+    multiple: false,
+    formatsAllowed: ".jpg,.png,.jpeg",
+    maxSize: "20",
+    uploadAPI: {
+      url: global.urlApi + "post/image",
+      method: "POST",
+      headers: {
+        "Authorization": this._userService.getToken()
+      },
+    },
+    theme: "attachPin",
+    hideProgressBar: false,
+    hideResetBtn: true,
+    hideSelectBtn: false,
+    attachPinText: 'Selecciona tu avatar'
   };
 
   constructor(
@@ -56,6 +74,12 @@ export class PostNewComponent implements OnInit {
         console.error(<any>error)
       }
     )
+  }
+
+  imageUpload(stored: any) {
+    let image = JSON.parse(stored.response)
+
+    this.post.image = image.avatar
   }
 
 }
