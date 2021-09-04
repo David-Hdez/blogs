@@ -1,6 +1,13 @@
 <div class="col-12 mt-3">
     <h1>{{page_title}}</h1>
     <p>¡Redacta tu blog!</p>
+    <hr>
+    <div class="alert alert-success" *ngIf="status=='success'">
+        Datos guardados correctamente.
+    </div>
+    <div class="alert alert-danger" *ngIf="status=='error'">
+        El guardado no se pudo completar, por favor intentalo más tarde.
+    </div>
     <form class="col-md-6" #postForm="ngForm" (ngSubmit)="store(postForm)">
         <div class="form-group">
             <label for="title">Título</label>
