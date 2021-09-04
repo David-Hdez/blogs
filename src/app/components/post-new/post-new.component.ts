@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { CategoryService } from '../../services//category.service';
 import { Post } from '../../models/post';
+import { Category } from '../../models/category';
 
 @Component({
   selector: 'app-post-new',
@@ -15,6 +16,7 @@ export class PostNewComponent implements OnInit {
   public identity: any
   public jwt: any
   public post: Post
+  public categories: any
   public options: Object = {
     charCounterCount: true,
     toolbarButtons: ['bold', 'italic', 'underline', 'paragraphFormat', 'alert'],
@@ -36,10 +38,24 @@ export class PostNewComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getCategories()
   }
 
   store(form: any) {
     console.debug(this.post)
+  }
+
+  getCategories() {
+    this._categoryService.index().subscribe(
+      response => {
+        if (response) {
+          this.categories = response.categories
+        }
+      },
+      error => {
+        console.error(<any>error)
+      }
+    )
   }
 
 }
