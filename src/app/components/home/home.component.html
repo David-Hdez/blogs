@@ -1,2 +1,21 @@
-<h1>{{page_title}}</h1>
-<p>home works!</p>
+<div class="spinner-border" role="status" *ngIf="!posts">
+    <span class="sr-only">Loading...</span>
+</div>
+<div class="container-fluid" *ngIf="posts">
+    <h1>{{page_title}}</h1>
+    <div class="card-columns">
+        <article class="card w-100" *ngFor="let post of posts">
+            <div class="card-header">
+                <h3><a [routerLink]="['/inicio']">{{post.title}}</a></h3>
+            </div>
+            <div class="card-body">
+                <div class="post-image" *ngIf="post.image">
+                    <img src="{{ urlApi + 'post/image/' +  post.image}}" alt="{{post.title}}" class="img-fluid">
+                </div>
+                <div class="post-image" *ngIf="!post.image">
+                    <img src="assets/images/social-media-1989152_1920.jpg" alt="{{post.title}}" class="img-fluid">
+                </div>
+            </div>
+        </article>
+    </div>
+</div>

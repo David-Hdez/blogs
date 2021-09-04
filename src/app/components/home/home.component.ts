@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
   getPosts() {
     this._postService.index().subscribe(
       response => {
-        this.posts = response
+        this.posts = response.posts
       },
       error => {
         console.error(<any>error)
