@@ -41,8 +41,7 @@ export class PostService {
 
     /**
      * Specific post
-     * 
-     * @param token JWT
+     *      
      * @param post Object for new post entry
      * @returns {Observable} GET Response              
      */
@@ -50,5 +49,22 @@ export class PostService {
         let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
 
         return this._http.get(this.urlApi + 'post/' + post_id, { headers: headers })
+    }
+
+    /**
+     * Specific post
+     * 
+     * @param {string} token JWT
+     * @param {Post} post Object for edit post entry
+     * @param {number} post_id ID post to update
+     * @returns {Observable} GET Response              
+     */
+    update(token: string, post: Post, post_id: number): Observable<any> {
+        let post_data = JSON.stringify(post)
+        let body_form_data = 'post=' + post_data
+        let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+            .set('Authorization', token)
+
+        return this._http.put(this.urlApi + 'post/' + post_id, body_form_data, { headers: headers })
     }
 }

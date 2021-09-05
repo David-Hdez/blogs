@@ -18,7 +18,7 @@
                 <div class="post-actions">
                     <a [routerLink]="['/entrada/', post.id]" class="btn btn-success mt-3 mx-1">Leer</a>
                     <span *ngIf="identity && identity.sub==post.user_id">
-                        <a [routerLink]="['/inicio']" class="btn btn-warning mt-3 mx-1">Editar</a>
+                        <a [routerLink]="['/editar-entrada', post.id]" class="btn btn-warning mt-3 mx-1">Editar</a>
                         <a [routerLink]="['/inicio']" class="btn btn-danger mt-3 mx-1">Borrar</a>
                     </span>
                 </div>
