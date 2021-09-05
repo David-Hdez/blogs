@@ -38,4 +38,16 @@ export class PostService {
 
         return this._http.post(this.urlApi + 'post', body_form_data, { headers: headers })
     }
+
+    /**
+     * Specific post
+     * 
+     * @param token JWT
+     * @param post Object for new post entryc               
+     */
+    show(post_id: number): Observable<any> {
+        let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+
+        return this._http.get(this.urlApi + 'post/' + post_id, { headers: headers })
+    }
 }

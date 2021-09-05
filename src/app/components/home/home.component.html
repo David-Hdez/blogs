@@ -6,7 +6,7 @@
     <div class="card-columns">
         <article class="card w-100" *ngFor="let post of posts">
             <div class="card-header">
-                <h3><a [routerLink]="['/inicio']">{{post.title}}</a></h3>
+                <h3><a [routerLink]="['/entrada/', post.id]">{{post.title}}</a></h3>
             </div>
             <div class="card-body">
                 <div class="post-image" *ngIf="post.image">
@@ -16,7 +16,7 @@
                     <img src="assets/images/social-media-1989152_1920.jpg" alt="{{post.title}}" class="img-fluid">
                 </div>
                 <div class="post-actions">
-                    <a [routerLink]="['/inicio']" class="btn btn-success mt-3 mx-1">Leer</a>
+                    <a [routerLink]="['/entrada/', post.id]" class="btn btn-success mt-3 mx-1">Leer</a>
                     <span *ngIf="identity && identity.sub==post.user_id">
                         <a [routerLink]="['/inicio']" class="btn btn-warning mt-3 mx-1">Editar</a>
                         <a [routerLink]="['/inicio']" class="btn btn-danger mt-3 mx-1">Borrar</a>
