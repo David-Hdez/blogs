@@ -20,6 +20,7 @@ export class PostNewComponent implements OnInit {
   public jwt: any
   public post: Post
   public categories: any
+  public is_edit: boolean
   public options: Object = {
     charCounterCount: true,
     toolbarButtons: ['bold', 'italic', 'underline', 'paragraphFormat', 'alert'],
@@ -57,6 +58,7 @@ export class PostNewComponent implements OnInit {
     this.jwt = this._userService.getToken()
     this.post = new Post(1, this.identity.sub, 1, '', '', '', null)
     this.status = ''
+    this.is_edit = false
   }
 
   ngOnInit(): void {

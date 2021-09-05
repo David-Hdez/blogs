@@ -1,6 +1,7 @@
 <div class="col-12 mt-3">
     <h1>{{page_title}}</h1>
-    <p>¡Redacta tu blog!</p>
+    <p *ngIf="!is_edit">¡Redacta tu blog!</p>
+    <p *ngIf="is_edit && post">Edita tu blog</p>
     <hr>
     <div class="alert alert-success" *ngIf="status=='success'">
         Datos guardados correctamente.

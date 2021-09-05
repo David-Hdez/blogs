@@ -57,7 +57,7 @@ export class PostService {
      * @param {string} token JWT
      * @param {Post} post Object for edit post entry
      * @param {number} post_id ID post to update
-     * @returns {Observable} GET Response              
+     * @returns {Observable} PUT Response              
      */
     update(token: string, post: Post, post_id: number): Observable<any> {
         let post_data = JSON.stringify(post)
