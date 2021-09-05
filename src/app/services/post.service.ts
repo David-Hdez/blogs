@@ -43,7 +43,8 @@ export class PostService {
      * Specific post
      * 
      * @param token JWT
-     * @param post Object for new post entryc               
+     * @param post Object for new post entry
+     * @returns {Observable} GET Response              
      */
     show(post_id: number): Observable<any> {
         let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
