@@ -32,10 +32,28 @@ export class HomeComponent implements OnInit {
     this.getPosts()
   }
 
+  /**
+   * List posts                   
+   */
   getPosts() {
     this._postService.index().subscribe(
       response => {
         this.posts = response.posts
+      },
+      error => {
+        console.error(<any>error)
+      }
+    )
+  }
+
+  /**
+   * Remove post
+   */
+  deletePost(id: number) {
+    this._postService.destroy(this.jwt, id).subscribe(
+      response => {
+        console.debug(response)
+        this.getPosts()
       },
       error => {
         console.error(<any>error)

@@ -19,7 +19,33 @@
                     <a [routerLink]="['/entrada/', post.id]" class="btn btn-success mt-3 mx-1">Leer</a>
                     <span *ngIf="identity && identity.sub==post.user_id">
                         <a [routerLink]="['/editar-entrada', post.id]" class="btn btn-warning mt-3 mx-1">Editar</a>
-                        <a [routerLink]="['/inicio']" class="btn btn-danger mt-3 mx-1">Borrar</a>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-danger mt-3 mx-1" data-toggle="modal"
+                            [attr.data-target]="'#confirmDeletePost'+post.id">
+                            Borrar
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="confirmDeletePost{{post.id}}" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Borrar Post</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        ¿Está seguro de borrar {{post.title}}?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Cancelar</button>
+                                        <a (click)="deletePost(post.id)" class="btn btn-danger"
+                                            data-dismiss="modal">Borrar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </span>
                 </div>
             </div>

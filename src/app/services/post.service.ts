@@ -67,4 +67,18 @@ export class PostService {
 
         return this._http.put(this.urlApi + 'post/' + post_id, body_form_data, { headers: headers })
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param {string} token JWT
+     * @param {number} post_id ID post to update
+     * @returns {Observable} DELETE Response
+     */
+    destroy(token: string, post_id: number): Observable<any> {
+        let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+            .set('Authorization', token)
+
+        return this._http.delete(this.urlApi + 'post/' + post_id, { headers: headers })
+    }
 }
