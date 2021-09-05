@@ -1,1 +1,9 @@
-<p>post-detail works!</p>
+<div class="spinner-border" role="status" *ngIf="!post">
+    <span class="sr-only">Loading...</span>
+</div>
+<div class="col-md-12 mt-3" *ngIf="post">
+    <h1>{{post.title}}</h1>
+    <p>{{category.name}} - {{user.name}} {{user.surname}}</p>
+    <hr>
+    <div [innerHTML]="post.content"></div>
+</div>
