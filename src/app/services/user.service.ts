@@ -85,6 +85,8 @@ export class UserService {
    * @returns {Observable} API response
    */
   update(token: any, user: any): Observable<any> {
+    user.description = global.htmlEntities(user.description) // HTML entities to UTF8
+
     let user_data = JSON.stringify(user)
     let body_form_data = 'user=' + user_data
     let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')

@@ -31,6 +31,8 @@ export class PostService {
      * @param post Object for new post entryc               
      */
     store(token: string, post: any): Observable<any> {
+        post.content = global.htmlEntities(post.content) // HTML entities to UTF8
+
         let post_data = JSON.stringify(post)
         let body_form_data = 'post=' + post_data
         let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
@@ -60,6 +62,8 @@ export class PostService {
      * @returns {Observable} PUT Response              
      */
     update(token: string, post: Post, post_id: number): Observable<any> {
+        post.content = global.htmlEntities(post.content) // HTML entities to UTF8
+
         let post_data = JSON.stringify(post)
         let body_form_data = 'post=' + post_data
         let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
