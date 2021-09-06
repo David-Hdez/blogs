@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../../models/post';
 import { PostService } from '../../services/post.service';
-import { global } from '../../services/global';
 import { UserService } from '../..//services/user.service';
+import { global } from '../../services/global';
 
 @Component({
   selector: 'app-home',
@@ -52,7 +52,6 @@ export class HomeComponent implements OnInit {
   deletePost(id: number) {
     this._postService.destroy(this.jwt, id).subscribe(
       response => {
-        console.debug(response)
         this.getPosts()
       },
       error => {
