@@ -3,7 +3,8 @@
 </div>
 <div class="col-md-12 mt-3" *ngIf="post">
     <h1>{{post.title}}</h1>
-    <p>{{category.name}} - {{user.name}} {{user.surname}}</p>
+    <p>{{category.name}}</p>
+    Por: <a [routerLink]="['/perfil', user.id]">{{user.name}} {{user.surname}}</a>
     <hr>
     <div [innerHTML]="post.content"></div>
 </div>
