@@ -40,6 +40,11 @@ export class CategoryDetailComponent implements OnInit {
     this.getPostsByCategory()
   }
 
+  /**
+   * Charge category and posts
+   * 
+   * First get for get category and after charge posts in the category to show
+   */
   getPostsByCategory() {
     this._route.params.subscribe(params => {
       let category_id = +params['id']
