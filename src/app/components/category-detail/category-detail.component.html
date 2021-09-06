@@ -1,1 +1,7 @@
-<p>category-detail works!</p>
+<div class="spinner-border" role="status" *ngIf="!category">
+    <span class="sr-only">Loading...</span>
+</div>
+<div class="container-fluid" *ngIf="category">
+    <h1>{{category.name}}</h1>
+    <hr>
+</div>
