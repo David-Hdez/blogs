@@ -21,6 +21,7 @@ export class PostEditComponent implements OnInit {
   public post: Post
   public categories: any
   public is_edit: boolean
+  public urlApi: string
   public options: Object = {
     charCounterCount: true,
     language: 'es',
@@ -61,6 +62,7 @@ export class PostEditComponent implements OnInit {
     this.status = ''
     this.getPost()
     this.is_edit = true
+    this.urlApi = global.urlApi
   }
 
   ngOnInit(): void {
