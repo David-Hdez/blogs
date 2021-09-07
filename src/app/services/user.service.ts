@@ -94,4 +94,16 @@ export class UserService {
 
     return this._http.put(this.urlApi + 'user', body_form_data, { headers: headers })
   }
+
+  /**
+   * Specific user
+   * 
+   * @param {number} user_id ID of User
+   * @returns {Observable} API response
+   */
+  show(user_id: number): Observable<any> {
+    let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+
+    return this._http.get(this.urlApi + 'user/' + user_id, { headers: headers })
+  }
 }

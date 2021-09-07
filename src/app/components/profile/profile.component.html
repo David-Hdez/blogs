@@ -1,1 +1,55 @@
-<p>profile works!</p>
+<div class="spinner-border" role="status" *ngIf="posts.length == 0">
+    <span class="sr-only">Loading...</span>
+</div>
+<div class="container-fluid mt-4" *ngIf="posts.length > 0">
+    <h1>Perfil de {{user.name}} {{user.surname}}</h1>
+    <hr>
+    <div class="card-columns mt-2">
+        <article class="card w-100" *ngFor="let post of posts">
+            <div class="card-header">
+                <h3><a [routerLink]="['/entrada/', post.id]">{{post.title}}</a></h3>
+            </div>
+            <div class="card-body">
+                <div class="post-image" *ngIf="post.image">
+                    <img src="{{ urlApi + 'post/image/' +  post.image}}" alt="{{post.title}}" class="img-fluid">
+                </div>
+                <div class="post-image" *ngIf="!post.image">
+                    <img src="assets/images/social-media-1989152_1920.jpg" alt="{{post.title}}" class="img-fluid">
+                </div>
+                <div class="post-actions">
+                    <a [routerLink]="['/entrada/', post.id]" class="btn btn-success mt-3 mx-1">Leer</a>
+                    <span *ngIf="identity && identity.sub==post.user_id">
+                        <a [routerLink]="['/editar-entrada', post.id]" class="btn btn-warning mt-3 mx-1">Editar</a>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-danger mt-3 mx-1" data-toggle="modal"
+                            [attr.data-target]="'#confirmDeletePost'+post.id">
+                            Borrar
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="confirmDeletePost{{post.id}}" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Borrar Post</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        ¿Está seguro de borrar {{post.title}}?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Cancelar</button>
+                                        <a (click)="deletePost(post.id)" class="btn btn-danger"
+                                            data-dismiss="modal">Borrar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </span>
+                </div>
+            </div>
+        </article>
+    </div>
+</div>

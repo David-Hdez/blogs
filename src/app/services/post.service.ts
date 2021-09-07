@@ -85,4 +85,16 @@ export class PostService {
 
         return this._http.delete(this.urlApi + 'post/' + post_id, { headers: headers })
     }
+
+    /**
+     * Specific posts for user
+     *           
+     * @param {number} user_id ID of user
+     * @returns {Observable} GET Response              
+     */
+    showByUser(user_id: number): Observable<any> {
+        let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+
+        return this._http.get(this.urlApi + 'post/user/' + user_id, { headers: headers })
+    }
 }
