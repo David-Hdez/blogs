@@ -71,6 +71,7 @@ export class ProfileComponent implements OnInit {
     this._userService.show(user_id).subscribe(
       response => {
         this.user = response.user
+        this.user.image = response.user.img
       },
       error => {
         console.error(<any>error)
